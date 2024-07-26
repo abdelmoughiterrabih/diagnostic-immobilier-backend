@@ -10,4 +10,5 @@ public class DiagnosticImmobilierBackendApplication {
 		SpringApplication.run(DiagnosticImmobilierBackendApplication.class, args);
 	}
 
+
 }
