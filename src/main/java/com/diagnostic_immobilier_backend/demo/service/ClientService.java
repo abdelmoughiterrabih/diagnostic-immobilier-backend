@@ -25,7 +25,7 @@ public class ClientService {
     }
 
     public Optional<Client> getClientById(long id) {
-        return clientRepository.findById((int) id);
+        return clientRepository.findById( id);
     }
 
     // Update
@@ -35,6 +35,6 @@ public class ClientService {
 
     // Delete
     public void deleteClient(long id) {
-        clientRepository.deleteById((int) id);
+        clientRepository.deleteById( id);
     }
 }

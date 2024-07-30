@@ -11,10 +11,11 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name="Rapport")
+@Entity
 public class Rapport {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id ;
+    private Long id ;
     @Column
     private java.util.Date date;
     @Column
@@ -27,4 +28,7 @@ public class Rapport {
     private String type_bien;
     @Column
     private String description_bien;
+
+    private boolean is_valid;
+
 }

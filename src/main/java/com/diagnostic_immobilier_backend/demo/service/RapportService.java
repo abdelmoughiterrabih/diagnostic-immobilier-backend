@@ -14,27 +14,36 @@ public class RapportService {
     @Autowired
     private RapportRepository rapportRepository;
 
-    // Create
+    // Méthode pour ajouter un nouveau rapport
     public Rapport createRapport(Rapport rapport) {
         return rapportRepository.save(rapport);
     }
 
-    // Read
+    // Méthode pour obtenir tous les rapports
     public List<Rapport> getAllRapports() {
         return rapportRepository.findAll();
     }
 
-    public Optional<Rapport> getRapportById(Integer id) {
+    // Méthode pour obtenir un rapport par son ID
+    public Optional<Rapport> getRapportById(Long id) {
         return rapportRepository.findById(id);
     }
 
-    // Update
-    public Rapport updateRapport(Rapport rapport) {
+    // Méthode pour mettre à jour un rapport
+    public Rapport updateRapport(Long id, Rapport rapportDetails) {
+        Rapport rapport = rapportRepository.findById(id).orElseThrow(() -> new RuntimeException("Rapport not found"));
+        rapport.setDate(rapportDetails.getDate());
+        rapport.setResultat_diagnostic(rapportDetails.getResultat_diagnostic());
+        rapport.setEstimation_prix(rapportDetails.getEstimation_prix());
+        rapport.setAddresse_bien(rapportDetails.getAddresse_bien());
+        rapport.setType_bien(rapportDetails.getType_bien());
+        rapport.setDescription_bien(rapportDetails.getDescription_bien());
         return rapportRepository.save(rapport);
     }
 
-    // Delete
-    public void deleteRapport(Integer id) {
-        rapportRepository.deleteById(id);
+    // Méthode pour supprimer un rapport
+    public void deleteRapport(Long id) {
+        Rapport rapport = rapportRepository.findById(id).orElseThrow(() -> new RuntimeException("Rapport not found"));
+        rapportRepository.delete(rapport);
     }
 }
