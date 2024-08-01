@@ -1,12 +1,12 @@
 package com.diagnostic_immobilier_backend.demo.entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 import lombok.*;
 import org.hibernate.annotations.Comment;
 
 @Entity
-@Getter
-@Setter
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name="dossier")
@@ -14,17 +14,21 @@ public class Dossier {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id ;
-    @Column
+
+     @NotNull(message = "numero de dossier")
     private int numero_dossier;
-    @Column
+
     private java.util.Date date_depo;
-    @Column
+
     private String nom;
-    @Column
+
     private String type_service;
 
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "client_id")
+    @ManyToOne
+    @JoinColumn(name = "client_id", nullable = false)
     private Client client;
-
+    @OneToOne(mappedBy = "dossier", cascade = CascadeType.ALL)
+    private Rapport rapport;
+    @OneToOne(mappedBy = "dossier", cascade = CascadeType.ALL)
+    private Facture facture;
 }

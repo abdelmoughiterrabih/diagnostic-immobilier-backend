@@ -1,34 +1,28 @@
 package com.diagnostic_immobilier_backend.demo.entity;
 
 import jakarta.persistence.*;
-import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 @Entity
-@Getter
-@Setter
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 @Table(name="Facture")
 public class Facture {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    @Column
-    private int numero_facture;
-    @Column
-    private java.util.Date date_facture;
-    @Column
-    private float montant_facture;
-    @Column
-    private String description;
-    public Facture(){
 
-    }
-public Facture (long id,int numero_facture,java.util.Date date_facture,float montant_facture,String description){
-        this.id=id;
-        this.numero_facture=numero_facture;
-        this.date_facture=date_facture;
-        this.montant_facture=montant_facture;
-        this.description=description;
-}
+    private int numero_facture;
+
+    private java.util.Date date_facture;
+
+    private float montant_facture;
+
+    private String description;
+    @OneToOne
+    @JoinColumn(name = "dossier_id")
+    private Dossier dossier;
+
+
 }
