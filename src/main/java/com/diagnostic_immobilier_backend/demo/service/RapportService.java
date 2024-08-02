@@ -38,6 +38,7 @@ public class RapportService {
         rapport.setAddresse_bien(rapportDetails.getAddresse_bien());
         rapport.setType_bien(rapportDetails.getType_bien());
         rapport.setDescription_bien(rapportDetails.getDescription_bien());
+        rapport.setDossier(rapportDetails.getDossier()); // Mise à jour de la relation Dossier
         return rapportRepository.save(rapport);
     }
 

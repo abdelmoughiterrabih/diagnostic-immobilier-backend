@@ -21,14 +21,16 @@ public class Dossier {
     private java.util.Date date_depo;
 
     private String nom;
-
+    @NotNull(message = "type_service")
     private String type_service;
 
     @ManyToOne
     @JoinColumn(name = "client_id", nullable = false)
     private Client client;
+
     @OneToOne(mappedBy = "dossier", cascade = CascadeType.ALL)
     private Rapport rapport;
+
     @OneToOne(mappedBy = "dossier", cascade = CascadeType.ALL)
     private Facture facture;
 }

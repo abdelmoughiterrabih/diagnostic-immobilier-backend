@@ -1,6 +1,7 @@
 package com.diagnostic_immobilier_backend.demo.entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 import lombok.*;
 
 @Entity
@@ -12,7 +13,7 @@ public class Facture {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-
+    @NotNull(message = "numero de facture")
     private int numero_facture;
 
     private java.util.Date date_facture;

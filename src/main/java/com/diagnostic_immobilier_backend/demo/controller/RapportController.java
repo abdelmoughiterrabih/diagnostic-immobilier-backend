@@ -22,7 +22,7 @@ public class RapportController {
     }
 
     // Obtenir tous les rapports
-    @GetMapping("getall")
+    @GetMapping("/getall")
     public List<Rapport> getAllRapports() {
         return rapportService.getAllRapports();
     }
