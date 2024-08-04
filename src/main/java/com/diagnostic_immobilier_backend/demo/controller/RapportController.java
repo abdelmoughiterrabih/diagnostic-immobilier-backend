@@ -1,5 +1,6 @@
 package com.diagnostic_immobilier_backend.demo.controller;
 
+import com.diagnostic_immobilier_backend.demo.DTO.RapportDTO;
 import com.diagnostic_immobilier_backend.demo.entity.Rapport;
 import com.diagnostic_immobilier_backend.demo.service.RapportService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,8 +18,8 @@ public class RapportController {
 
     // Créer un nouveau rapport
     @PostMapping("/create")
-    public Rapport createRapport(@RequestBody Rapport rapport) {
-        return rapportService.createRapport(rapport);
+    public RapportDTO createRapport(@RequestBody RapportDTO rapportDTO) {
+        return rapportService.createRapport(rapportDTO);
     }
 
     // Obtenir tous les rapports

@@ -13,7 +13,7 @@ import org.hibernate.annotations.Comment;
 public class Dossier {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id ;
+    private Long id ;
 
      @NotNull(message = "numero de dossier")
     private int numero_dossier;
@@ -28,9 +28,7 @@ public class Dossier {
     @JoinColumn(name = "client_id", nullable = false)
     private Client client;
 
-    @OneToOne(mappedBy = "dossier", cascade = CascadeType.ALL)
-    private Rapport rapport;
 
-    @OneToOne(mappedBy = "dossier", cascade = CascadeType.ALL)
-    private Facture facture;
+
+
 }

@@ -25,12 +25,7 @@ public class DossierService {
             Optional<Client> client = clientRepository.findById(dossier.getClient().getId());
             client.ifPresent(dossier::setClient);
         }
-        if (dossier.getRapport() != null) {
-            dossier.getRapport().setDossier(dossier);
-        }
-        if (dossier.getFacture() != null) {
-            dossier.getFacture().setDossier(dossier);
-        }
+
         return dossierRepository.save(dossier);
     }
 
@@ -40,7 +35,7 @@ public class DossierService {
     }
 
     public Optional<Dossier> getDossierById(long id) {
-        return dossierRepository.findById((int) id);
+        return dossierRepository.findById((Long) id);
     }
 
     // Update
@@ -49,17 +44,12 @@ public class DossierService {
             Optional<Client> client = clientRepository.findById(dossier.getClient().getId());
             client.ifPresent(dossier::setClient);
         }
-        if (dossier.getRapport() != null) {
-            dossier.getRapport().setDossier(dossier);
-        }
-        if (dossier.getFacture() != null) {
-            dossier.getFacture().setDossier(dossier);
-        }
+
         return dossierRepository.save(dossier);
     }
 
     // Delete
     public void deleteDossier(long id) {
-        dossierRepository.deleteById((int) id);
+        dossierRepository.deleteById((long) id);
     }
 }

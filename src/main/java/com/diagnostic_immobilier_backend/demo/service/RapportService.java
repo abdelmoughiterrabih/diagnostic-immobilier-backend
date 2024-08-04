@@ -1,7 +1,12 @@
 package com.diagnostic_immobilier_backend.demo.service;
 
+import com.diagnostic_immobilier_backend.demo.DTO.RapportDTO;
+import com.diagnostic_immobilier_backend.demo.entity.Dossier;
 import com.diagnostic_immobilier_backend.demo.entity.Rapport;
+import com.diagnostic_immobilier_backend.demo.repository.DossierRepository;
 import com.diagnostic_immobilier_backend.demo.repository.RapportRepository;
+import jakarta.persistence.EntityNotFoundException;
+import lombok.Builder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,11 +18,29 @@ public class RapportService {
 
     @Autowired
     private RapportRepository rapportRepository;
-
+    @Autowired
+private DossierRepository dossierRepository;
     // Méthode pour ajouter un nouveau rapport
-    public Rapport createRapport(Rapport rapport) {
-        return rapportRepository.save(rapport);
+    public RapportDTO createRapport(RapportDTO rapportDTO) {
+        Long dossierId = rapportDTO.getDossier();
+        if (dossierId == null) {
+            throw new IllegalArgumentException("The given id must not be null");
+        }
+
+        Optional<Dossier> dossierOpt = dossierRepository.findById(dossierId);
+        if (dossierOpt.isPresent()) {
+            Dossier dossier = dossierOpt.get();
+            Rapport rapport = this.toEntity(rapportDTO);
+            rapport.setDossier(dossier); // assuming rapport should be linked to dossier
+
+            rapportRepository.save(rapport);
+            return rapportDTO;
+        } else {
+            throw new EntityNotFoundException("Dossier not found with id " + dossierId);
+        }
     }
+
+
 
     // Méthode pour obtenir tous les rapports
     public List<Rapport> getAllRapports() {
@@ -46,5 +69,22 @@ public class RapportService {
     public void deleteRapport(Long id) {
         Rapport rapport = rapportRepository.findById(id).orElseThrow(() -> new RuntimeException("Rapport not found"));
         rapportRepository.delete(rapport);
+    }
+    public Rapport toEntity(RapportDTO rapportDTO) {
+
+        return new Rapport(
+                rapportDTO.getId(),
+                rapportDTO.getDate(),
+                rapportDTO.getResultat_diagnostic(),
+                rapportDTO.getEstimation_prix(),
+                rapportDTO.getAddresse_bien(),
+                rapportDTO.getType_bien(),
+                rapportDTO.getDescription_bien(),
+                dossierRepository.findById(rapportDTO.getDossier()).get()
+        );
+
+
+
+
     }
 }

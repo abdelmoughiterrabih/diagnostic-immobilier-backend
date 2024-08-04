@@ -1,6 +1,6 @@
 package com.diagnostic_immobilier_backend.demo.controller;
 
-import com.diagnostic_immobilier_backend.demo.entity.Facture;
+import com.diagnostic_immobilier_backend.demo.DTO.FactureDTO;
 import com.diagnostic_immobilier_backend.demo.service.FactureService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -19,31 +19,30 @@ public class FactureController {
 
     // Create
     @PostMapping("/create")
-    public ResponseEntity<Facture> createFacture(@RequestBody Facture facture) {
-        Facture savedFacture = factureService.createFacture(facture);
-        return new ResponseEntity<>(savedFacture, HttpStatus.CREATED);
+    public ResponseEntity<FactureDTO> createFacture(@RequestBody FactureDTO factureDTO) {
+        FactureDTO savedFactureDTO = factureService.createFacture(factureDTO);
+        return new ResponseEntity<>(savedFactureDTO, HttpStatus.CREATED);
     }
 
     // Read
     @GetMapping("/getall")
-    public ResponseEntity<List<Facture>> getAllFactures() {
-        List<Facture> factures = factureService.getAllFactures();
+    public ResponseEntity<List<FactureDTO>> getAllFactures() {
+        List<FactureDTO> factures = factureService.getAllFactures();
         return new ResponseEntity<>(factures, HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Facture> getFactureById(@PathVariable long id) {
-        Optional<Facture> facture = factureService.getFactureById(id);
-        return facture.map(value -> new ResponseEntity<>(value, HttpStatus.OK))
+    public ResponseEntity<FactureDTO> getFactureById(@PathVariable long id) {
+        Optional<FactureDTO> factureDTO = factureService.getFactureById(id);
+        return factureDTO.map(value -> new ResponseEntity<>(value, HttpStatus.OK))
                 .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 
     // Update
     @PutMapping("/{id}")
-    public ResponseEntity<Facture> updateFacture(@PathVariable long id, @RequestBody Facture facture) {
-        facture.setId((int) id);
-        Facture updatedFacture = factureService.updateFacture(facture);
-        return new ResponseEntity<>(updatedFacture, HttpStatus.OK);
+    public ResponseEntity<FactureDTO> updateFacture(@PathVariable long id, @RequestBody FactureDTO factureDTO) {
+        FactureDTO updatedFactureDTO = factureService.updateFacture(id, factureDTO);
+        return new ResponseEntity<>(updatedFactureDTO, HttpStatus.OK);
     }
 
     // Delete
