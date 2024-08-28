@@ -88,12 +88,17 @@ public class UserController {
 
         Authentication authentication = authenticate(email, password);
         SecurityContextHolder.getContext().setAuthentication(authentication);
+        UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+        String role = userDetails.getAuthorities().stream()
+                .map(grantedAuthority -> grantedAuthority.getAuthority())
+                .findFirst().orElse(null);
 
         String token = JwtProvider.generateToken(authentication);
         AuthResponse authResponse = new AuthResponse();
         authResponse.setMessage("Login success");
         authResponse.setJwt(token);
         authResponse.setStatus(true);
+        authResponse.setRole(role);
 
         return new ResponseEntity<>(authResponse, HttpStatus.OK);
     }
