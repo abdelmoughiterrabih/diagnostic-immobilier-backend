@@ -1,7 +1,9 @@
 package com.diagnostic_immobilier_backend.demo.service;
 
 import com.diagnostic_immobilier_backend.demo.entity.Utilisateur;
+import com.diagnostic_immobilier_backend.demo.repository.UserRepository;
 import com.diagnostic_immobilier_backend.demo.repository.UtilisateurRepository;
+import com.diagnostic_immobilier_backend.demo.usermodel.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,29 +14,29 @@ import java.util.Optional;
 public class UtilisateurService {
 
     @Autowired
-    private UtilisateurRepository utilisateurRepository;
+    private UserRepository utilisateurRepository;
 
     // Create
-    public Utilisateur createUtilisateur(Utilisateur utilisateur) {
+    public User createUtilisateur(User utilisateur) {
         return utilisateurRepository.save(utilisateur);
     }
 
     // Read
-    public List<Utilisateur> getAllUtilisateurs() {
+    public List<User> getAllUtilisateurs() {
         return utilisateurRepository.findAll();
     }
 
-    public Optional<Utilisateur> getUtilisateurById(long id) {
-        return utilisateurRepository.findById((int) id);
+    public Optional<User> getUtilisateurById(long id) {
+        return utilisateurRepository.findById(id);
     }
 
     // Update
-    public Utilisateur updateUtilisateur(Utilisateur utilisateur) {
+    public User updateUtilisateur(User utilisateur) {
         return utilisateurRepository.save(utilisateur);
     }
 
     // Delete
     public void deleteUtilisateur(long id) {
-        utilisateurRepository.deleteById((int) id);
+        utilisateurRepository.deleteById( id);
     }
 }

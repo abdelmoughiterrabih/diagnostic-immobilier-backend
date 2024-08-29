@@ -2,6 +2,7 @@ package com.diagnostic_immobilier_backend.demo.controller;
 
 import com.diagnostic_immobilier_backend.demo.entity.Utilisateur;
 import com.diagnostic_immobilier_backend.demo.service.UtilisateurService;
+import com.diagnostic_immobilier_backend.demo.usermodel.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,32 +20,32 @@ public class UtilisateurController {
 
     // Create
     @PostMapping("/create")
-    public ResponseEntity<Utilisateur> createUtilisateur(@RequestBody Utilisateur utilisateur) {
-        Utilisateur createdUtilisateur = utilisateurService.createUtilisateur(utilisateur);
+    public ResponseEntity<User> createUtilisateur(@RequestBody User utilisateur) {
+        User createdUtilisateur = utilisateurService.createUtilisateur(utilisateur);
         return new ResponseEntity<>(createdUtilisateur, HttpStatus.CREATED);
     }
 
     // Read
     @GetMapping("/getall")
-    public ResponseEntity<List<Utilisateur>> getAllUtilisateurs() {
-        List<Utilisateur> utilisateurs = utilisateurService.getAllUtilisateurs();
+    public ResponseEntity<List<User>> getAllUtilisateurs() {
+        List<User> utilisateurs = utilisateurService.getAllUtilisateurs();
         return new ResponseEntity<>(utilisateurs, HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Utilisateur> getUtilisateurById(@PathVariable long id) {
-        Optional<Utilisateur> utilisateur = utilisateurService.getUtilisateurById(id);
+    public ResponseEntity<User> getUtilisateurById(@PathVariable long id) {
+        Optional<User> utilisateur = utilisateurService.getUtilisateurById(id);
         return utilisateur.map(value -> new ResponseEntity<>(value, HttpStatus.OK))
                 .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 
     // Update
     @PutMapping("/{id}")
-    public ResponseEntity<Utilisateur> updateUtilisateur(@PathVariable long id, @RequestBody Utilisateur utilisateur) {
-        Optional<Utilisateur> existingUtilisateur = utilisateurService.getUtilisateurById(id);
+    public ResponseEntity<User> updateUtilisateur(@PathVariable long id, @RequestBody User utilisateur) {
+        Optional<User> existingUtilisateur = utilisateurService.getUtilisateurById(id);
         if (existingUtilisateur.isPresent()) {
             utilisateur.setId(id);
-            Utilisateur updatedUtilisateur = utilisateurService.updateUtilisateur(utilisateur);
+            User updatedUtilisateur = utilisateurService.updateUtilisateur(utilisateur);
             return new ResponseEntity<>(updatedUtilisateur, HttpStatus.OK);
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -54,7 +55,7 @@ public class UtilisateurController {
     // Delete
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteUtilisateur(@PathVariable long id) {
-        Optional<Utilisateur> utilisateur = utilisateurService.getUtilisateurById(id);
+        Optional<User> utilisateur = utilisateurService.getUtilisateurById(id);
         if (utilisateur.isPresent()) {
             utilisateurService.deleteUtilisateur(id);
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);

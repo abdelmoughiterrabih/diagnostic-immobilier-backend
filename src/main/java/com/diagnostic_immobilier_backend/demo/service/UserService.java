@@ -1,11 +1,14 @@
 package com.diagnostic_immobilier_backend.demo.service;
 
+import com.diagnostic_immobilier_backend.demo.repository.UserRepository;
 import com.diagnostic_immobilier_backend.demo.usermodel.User;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.List;
 
 public interface UserService extends UserDetails {
+
     List<User> getAllUser();
     User findUserProfileByJwt(String jwt);
     User getUserByEmail(String email);
