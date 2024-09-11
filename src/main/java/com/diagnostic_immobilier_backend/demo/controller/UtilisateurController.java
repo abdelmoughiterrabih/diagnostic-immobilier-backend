@@ -1,8 +1,7 @@
 package com.diagnostic_immobilier_backend.demo.controller;
 
-import com.diagnostic_immobilier_backend.demo.entity.Utilisateur;
 import com.diagnostic_immobilier_backend.demo.service.UtilisateurService;
-import com.diagnostic_immobilier_backend.demo.usermodel.User;
+import com.diagnostic_immobilier_backend.demo.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

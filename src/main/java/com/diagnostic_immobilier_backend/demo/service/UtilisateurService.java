@@ -1,9 +1,7 @@
 package com.diagnostic_immobilier_backend.demo.service;
 
-import com.diagnostic_immobilier_backend.demo.entity.Utilisateur;
 import com.diagnostic_immobilier_backend.demo.repository.UserRepository;
-import com.diagnostic_immobilier_backend.demo.repository.UtilisateurRepository;
-import com.diagnostic_immobilier_backend.demo.usermodel.User;
+import com.diagnostic_immobilier_backend.demo.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

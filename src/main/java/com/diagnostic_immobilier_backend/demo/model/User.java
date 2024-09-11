@@ -1,4 +1,4 @@
-package com.diagnostic_immobilier_backend.demo.usermodel;
+package com.diagnostic_immobilier_backend.demo.model;
 
 
 import com.fasterxml.jackson.annotation.JsonProperty;

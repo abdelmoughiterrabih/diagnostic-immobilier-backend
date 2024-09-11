@@ -6,7 +6,7 @@ import com.diagnostic_immobilier_backend.demo.response.AuthResponse;
 import com.diagnostic_immobilier_backend.demo.service.UserService;
 import com.diagnostic_immobilier_backend.demo.service.UserServiceImplementation;
 import com.diagnostic_immobilier_backend.demo.SecurityConfig.JwtProvider;
-import com.diagnostic_immobilier_backend.demo.usermodel.User;
+import com.diagnostic_immobilier_backend.demo.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

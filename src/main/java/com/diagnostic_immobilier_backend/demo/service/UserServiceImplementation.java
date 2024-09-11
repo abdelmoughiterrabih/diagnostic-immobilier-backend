@@ -1,12 +1,10 @@
 package com.diagnostic_immobilier_backend.demo.service;
-import com.diagnostic_immobilier_backend.demo.service.UserService;
 import com.diagnostic_immobilier_backend.demo.repository.UserRepository;
-import com.diagnostic_immobilier_backend.demo.usermodel.User;
+import com.diagnostic_immobilier_backend.demo.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
