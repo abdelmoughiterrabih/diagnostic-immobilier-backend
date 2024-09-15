@@ -29,8 +29,6 @@ public class Client {
     private String ville ;
 
 
-
-
-
-
+    public void setEmail(String mail) {
+    }
 }
